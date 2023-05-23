@@ -1,0 +1,17 @@
+<h1>My tasks</h1>
+<ul>
+  <% @tasks.each do |task| %>
+  <li class="list-unstyled my-2 align-middle d-flex align-items-center">
+    <% if task.completed == true %>
+      <input type="checkbox" class="form-check-input me-2" checked>
+    <% else %>
+      <input type="checkbox" class="form-check-input me-2">
+    <% end %>
+    <%= link_to task.title, task_path(task), class: "fs-4 text-decoration-none text-reset mx-3" %>
+    <%= link_to raw('<i class="fa-solid fa-trash"></i>'), task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-primary btn-sm" %>
+  </li>
+  <% end %>
+</ul>
+
+
+<%= link_to raw('<i class="fa-solid fa-square-plus"></i> Add new task'), new_task_path, class: "btn btn-primary" %>
